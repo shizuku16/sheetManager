@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャラシート</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./dataInput.js"></script>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css" type="text/css">
+</head>
+<body onload="load()" onchange="change()" hidden>
+    <div class="menu" onclick="menu()">menu</div>
+    <div class="menuBar" hidden>
+        <table class="list">
+            <tr><td class="menuList"><a href="./index.html?id=000000">新規作成</a></td></tr>
+            <tr><td class="menuList"><a href="../mylist/index.html">マイリスト</a></td></tr>
+            <tr><td class="menuList"><a href="../passChange/index.html">パスワード変更</a></td></tr>
+            <tr><td class="menuList"><a href="javascript:void(0)" onclick="logOut()">ログアウト</a></td></tr>
+        </table>
+    </div>
+    <div class="hedder"></div>
+    <div>
+        <table>
+            <tr>
+                <td class="title">名前</td>
+                <td><select id="name" onchange="dataInput()"></select></td>
+            </tr>
+            <tr>
+                <td class="title">二つ名</td>
+                <td><input type="text" id="doubleName"></td>
+            </tr>
+            <tr>
+                <td class="title">拠点</td>
+                <td><input type="text" id="base"></td>
+            </tr>
+            <tr>
+                <td class="title">やる気</td>
+                <td class="motivation">
+                    <span class="control control--checkbox">
+                        <input type="checkbox" id="power1" checked hidden/>
+                        <div class="control__indicator" onclick="power(1)"></div>
+                    </span>
+                    <span class="control control--checkbox">
+                        <input type="checkbox" id="power2" hidden/>
+                        <div class="control__indicator" onclick="power(2)"></div>
+                    </span>
+                    <span class="control control--checkbox">
+                        <input type="checkbox" id="power3" hidden/>
+                        <div class="control__indicator" onclick="power(3)"></div>
+                    </span>
+                    <!--関数power用-->
+                    <input type="checkbox" id="power4" hidden/> 
+                </td>
+            </tr>
+            <tr>
+                <td class="title">変調</td>
+                <td>
+                    <label class="control control--checkbox">
+                        <input type="checkbox" id="slump1" hidden/>
+                        ①だるい　　<div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">
+                        <input type="checkbox" id="slump2" hidden/>
+                        　②魔力切れ　<div class="control__indicator"></div>
+                    </label><br>
+                    <label class="control control--checkbox">
+                        <input type="checkbox" id="slump3" hidden/>
+                        ③二日酔い　<div class="control__indicator"></div>
+                    </label>
+                    <label class=   "control control--checkbox">
+                        <input type="checkbox" id="slump4" hidden/>
+                        　④ケガ　　　<div class="control__indicator"></div>
+                    </label><br>
+                    <label class="control control--checkbox">
+                        <input type="checkbox" id="slump5" hidden/>
+                        ⑤不機嫌　　<div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">
+                        <input type="checkbox" id="slump6" hidden/>
+                        　⑥疲労　　　<div class="control__indicator"></div>
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tbody id="charactor">
+                <tr>
+                    <td rowspan="100" class="title">人物<br><br>
+                        <button onclick="add(`charactor`)">+</button><br><button onclick="decrease(`charactor`)">-</button>
+                    </td>
+                    <td>
+                            <input type="text" id="charactor1" maxlength="20">　への絆
+                        <label class="control control--checkbox">
+                            <input type="checkbox" id="pused1" hidden/>
+                            <div class="control__indicator"></div>
+                        </label>    
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                            <input type="text" id="charactor2" maxlength="20">　への絆
+                        <label class="control control--checkbox">
+                            <input type="checkbox" id="pused2" hidden/>
+                            <div class="control__indicator"></div>
+                        </label>    
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                            <input type="text" id="charactor3" maxlength="20">　への絆
+                        <label class="control control--checkbox">
+                            <input type="checkbox" id="pused3" hidden/>
+                            <div class="control__indicator"></div>
+                        </label>    
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                            <input type="text" id="charactor4" maxlength="20">　への絆
+                        <label class="control control--checkbox">
+                            <input type="checkbox" id="pused4" hidden/>
+                            <div class="control__indicator"></div>
+                        </label>    
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                            <input type="text" id="charactor5" maxlength="20">　への絆
+                        <label class="control control--checkbox">
+                            <input type="checkbox" id="pused5" hidden/>
+                            <div class="control__indicator"></div>
+                        </label>    
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                            <input type="text" id="charactor6" maxlength="20">　への絆
+                        <label class="control control--checkbox">
+                            <input type="checkbox" id="pused6" hidden/>
+                            <div class="control__indicator"></div>
+                        </label>    
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <tbody id="tag">
+                <tr>
+                    <td rowspan="100" class="title">タグ<br><br>
+                        <button onclick="add(`tag`)">+</button><br><button onclick="decrease(`tag`)">-</button></td>
+                    </td>
+                    <td><input type="text" id="tag1" maxlength="20"></td>
+                </tr>
+                <tr><td><input type="text" id="tag2" maxlength="20"></td></tr>
+                <tr><td><input type="text" id="tag3" maxlength="20"></td></tr>
+                <tr><td><input type="text" id="tag4" maxlength="20"></td></tr>
+                <tr><td><input type="text" id="tag5" maxlength="20"></td></tr>
+                <tr><td><input type="text" id="tag6" maxlength="20"></td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td class="title" rowspan="3">能力スキル</td>
+                <td class="title">名称</td>
+                <td><input type="text" id="skill1Name"></td>
+            </tr>
+            <tr>
+                <td class="title">タイプ</td>
+                <td>
+                    <select id="skill1Type">
+                        <option>オート</option>
+                        <option>アクション</option>
+                        <option>サポート</option>
+                    </select>
+                </td>
+            </tr>
+                <td class="title">効果</td>
+                <td><textarea rows="10" id="skill1Effect"></textarea></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="title" rowspan="3">個性スキル</td>
+                <td class="title">名称</td>
+                <td><input type="text" id="skill2Name"></td>
+            </tr>
+            <tr>
+                <td class="title">タイプ</td>
+                <td>
+                    <select id="skill2Type">
+                        <option>オート</option>
+                        <option>アクション</option>
+                        <option>サポート</option>
+                    </select>
+                </td>
+            </tr>
+                <td class="title">効果</td>
+                <td><textarea rows="10" id="skill2Effect"></textarea></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td class="title" rowspan="3">弾幕スキル</td>
+                <td class="title">名称</td>
+                <td><select id="skill3Name" oninput="skillChange(this)"></select></td>
+            </tr>
+                <td class="title">効果</td>
+                <td><textarea rows="10" id="skill3Effect"></textarea></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="title" rowspan="3">スペルカード</td>
+                <td class="title">名称</td>         
+                <td><input type="text" id="skill4Name"></td>
+            </tr>
+                <td class="title">効果</td>
+                <td><textarea rows="10" id="skill4Effect"></textarea></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="title" rowspan="3">スペルカード</td>
+                <td class="title">名称</td>
+                <td><input type="text" id="skill5Name"></td>
+            </tr>
+                <td class="title">効果</td>
+                <td><textarea rows="10" id="skill5Effect"></textarea></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td class="title" rowspan="4">所持アイテム</td>
+            </tr>
+            <tr>
+                <td>①お酒　　<input type="number" min="0" max="3" style="width:30px;" id="item1"></td>
+                <td>④Ｐアイテム　　　　　<input type="number" min="0" max="3" style="width:30px;" id="item4"></td>
+            </tr>
+                <td>②小銭　　<input type="number" min="0" max="3" style="width:30px;" id="item2"></td>
+                <td>⑤残機のかけら　　　　<input type="number" min="0" max="3" style="width:30px;" id="item5"></td>
+            </tr>
+                <td>③お守り　<input type="number" min="0" max="3" style="width:30px;" id="item3"></td>
+                <td>⑥スペルカードの欠片　<input type="number" min="0" max="3" style="width:30px;" id="item6"></td>
+            </tr>
+        </table>
+    </div>
+    <button onclick="makeJson()" id="keep" hidden>保存</button>
+    <button onclick="sheetDelete()" id="delete" hidden>削除</button>
+    <button onclick="outPut()"　id="cocofolia">ココフォリア出力</button>
+</body>
+</html>

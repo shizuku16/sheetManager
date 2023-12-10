@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パスワード変更</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css" type="text/css">
+</head>
+<body>
+    <div class="menu" onclick="menu()">menu</div>
+    <div class="menuBar" hidden>
+        <table class="list">
+            <tr><td class="menuList"><a href="./index.html?id=000000">新規作成</a></td></tr>
+            <tr><td class="menuList"><a href="../mylist/index.html">マイリスト</a></td></tr>
+            <tr><td class="menuList"><a href="javascript:void(0)" onclick="logOut()">ログアウト</a></td></tr>
+        </table>
+    </div>
+    　　　　現在のパスワード：<input type="password" id="nowPass"><br>
+    　　　　新しいパスワード：<input type="password" id="newPass1"><br>
+    新しいパスワード（確認）：<input type="password" id="newPass2"><br><br>
+    <button onclick="change()" id="button">変更する</button>
+</body>
+</html>

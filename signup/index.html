@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サインアップ</title>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css" type="text/css">
+</head>
+<body>
+    アカウントを作成する<br>
+    <p>
+        　　　　　　　　ID：<input type="text" id="id" maxlength="10" pattern="^[a-zA-Z0-9]+$" required oninput="check(this)"><br>
+            　　　　パスワード：<input type="password" id="pass" maxlength="10" pattern="^[a-zA-Z0-9]+$" required oninput="check(this)"><br>
+    パスワード（確認）：<input type="password" id="pass2" maxlength="10" pattern="^[a-zA-Z0-9]+$" required oninput="check(this)"><br>
+    </p>
+    <p class="buttonArea">
+        <button onclick="idCheck(this)" id="makebtn">アカウント作成</button>
+    </p>
+    サインインは<a href="../signin/index.html">こちら</a>
+</body>
+</html>
