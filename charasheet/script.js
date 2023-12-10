@@ -5,9 +5,11 @@ async function load(){
     const sheetId = url.searchParams.get("id");
     if(sheetId==null) url.searchParams.set("id","000000")
     if(sheetId=="000000"||sheetId==null){
+        if(localStorage.getItem('shizukuSheetId')!=null){
+            $(`#keep`).prop("hidden",false);
+            $(`#delete`).prop("hidden",false);
+        }
         $(`body`).prop("hidden",false);
-        $(`#keep`).prop("hidden",false);
-        $(`#delete`).prop("hidden",false);
         document.title=`新規作成`;
         return
     };
