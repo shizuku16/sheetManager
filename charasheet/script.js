@@ -12,6 +12,7 @@ async function load(){
             $(`#logOutButton`).prop("hidden",true);
             $(`#mylistButton`).prop("hidden",true);
             $(`#passChangeButton`).prop("hidden",true);
+            $(`#newCreate`).prop("hidden",true);
             $(`#logInButton`).prop("hidden",false);
         }
         $(`body`).prop("hidden",false);
@@ -53,7 +54,13 @@ async function load(){
         $(`#keep`).prop("hidden",false);
         $(`#delete`).prop("hidden",false)
     }
-    if(localStorage.getItem('shizukuSheetId')==null) $(`#logOutButton`).prop("hidden",true);
+    if(localStorage.getItem('shizukuSheetId')==null){
+        $(`#logOutButton`).prop("hidden",true);
+        $(`#mylistButton`).prop("hidden",true);
+        $(`#passChangeButton`).prop("hidden",true);
+        $(`#newCreate`).prop("hidden",true);
+        $(`#logInButton`).prop("hidden",false);
+    }
     document.title=`${json.name}`;
     $(`body`).prop("hidden",false);
 }
