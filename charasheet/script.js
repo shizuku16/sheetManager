@@ -8,6 +8,11 @@ async function load(){
         if(localStorage.getItem('shizukuSheetId')!=null){
             $(`#keep`).prop("hidden",false);
             $(`#delete`).prop("hidden",false);
+        } else {
+            $(`#logOutButton`).prop("hidden",true);
+            $(`#mylistButton`).prop("hidden",true);
+            $(`#passChangeButton`).prop("hidden",true);
+            $(`#logInButton`).prop("hidden",false);
         }
         $(`body`).prop("hidden",false);
         document.title=`新規作成`;
@@ -48,6 +53,7 @@ async function load(){
         $(`#keep`).prop("hidden",false);
         $(`#delete`).prop("hidden",false)
     }
+    if(localStorage.getItem('shizukuSheetId')==null) $(`#logOutButton`).prop("hidden",true);
     document.title=`${json.name}`;
     $(`body`).prop("hidden",false);
 }
