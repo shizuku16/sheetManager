@@ -18,7 +18,8 @@ async function idCheck(btn){
     else{
         //登録処理
         await fetch(`https://script.google.com/macros/s/AKfycbxHNhsvMTcGc2lYi1kDEjIHiTEqNlON8aQ0o7PMNaEV4knmcIHSOBX4RHvdCaNfudPPMg/exec?data=${id},${pass}`)
-        alert("登録が完了しました。")
+        alert("登録が完了しました。");
+        localStorage.setItem('shizukuSheetId', id);
         window.location.href=`../mylist/index.html?id=${id}`;
     }
     btn.disabled=false;
