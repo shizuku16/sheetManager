@@ -5,6 +5,11 @@ async function idCheck(btn){
     let id=document.getElementById("id").value;
     let pass=document.getElementById("pass").value;
     let pass2=document.getElementById("pass2").value;
+    //空欄でないか
+    if(id==""||pass==""||pass2==""){
+        btn.disabled=false;
+        return
+    }
     //重複IDでないか
     await fetch("https://script.google.com/macros/s/AKfycbwneYVE_OVzFxTf9AB1x6iyofR8e1QPVfT5c10Psh1qwJ3ey9ShMa1wa4padXwg1UFAkA/exec")
         .then(res=>res.json())
