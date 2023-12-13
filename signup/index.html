@@ -8,15 +8,17 @@
     <link rel="stylesheet" href="./style.css" type="text/css">
 </head>
 <body>
-    アカウントを作成する<br>
-    <p>
-        　　　　　　　　ID：<input type="text" id="id" maxlength="10" pattern="^[a-zA-Z0-9]+$" required oninput="check(this)"><br>
-            　　　　パスワード：<input type="password" id="pass" maxlength="10" pattern="^[a-zA-Z0-9]+$" required oninput="check(this)"><br>
-    パスワード（確認）：<input type="password" id="pass2" maxlength="10" pattern="^[a-zA-Z0-9]+$" required oninput="check(this)"><br>
-    </p>
-    <p class="buttonArea">
-        <button onclick="idCheck(this)" id="makebtn">アカウント作成</button>
-    </p>
-    サインインは<a href="../signin/index.html">こちら</a>
+    <form>
+        アカウントを作成する<br>
+        <p>
+            　　　　　　　　ID：<input type="text" id="id" maxlength="10" pattern="^[a-zA-Z0-9]+$" required="required" oninput="check(this)" required><br>
+                　　　　パスワード：<input type="password" id="pass" maxlength="10" pattern="^[a-zA-Z0-9]+$" required="required" oninput="check(this)" required><br>
+        パスワード（確認）：<input type="password" id="pass2" maxlength="10" pattern="^[a-zA-Z0-9]+$" required="required" oninput="check(this)" required><br>
+        </p>
+        <p class="buttonArea">
+            <button onclick="idCheck(this)" id="makebtn" type="submit">アカウント作成</button>
+        </p>
+        サインインは<a href="../signin/index.html">こちら</a>
+    </form>
 </body>
 </html>
