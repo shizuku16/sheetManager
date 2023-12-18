@@ -29,7 +29,7 @@ async function load(){
             if(data==0) string=`<tr><td>作成されたキャラシはありません</td><tr>`;
             else data.map(e=>{
                 let tag=``;
-                JSON.parse(e[2]).label.split(/,|、/).map(item=>{
+                JSON.parse(e[2]).label.split(/,|、|\s/).map(item=>{
                     if(item=="") return
                     tag+=`<a href="./index.html?id=${id}&label=${item}">${item}</a>&nbsp;`;
                 })
