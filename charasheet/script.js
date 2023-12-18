@@ -62,6 +62,7 @@ async function load(){
         $(`#logInButton`).prop("hidden",false);
     }
     document.title=`${json.name}`;
+    $(`#label`).val(json.label);
     $(`body`).prop("hidden",false);
 }
 
@@ -139,8 +140,9 @@ function makeJson(){
     json.skillName = skillName;
     json.skillType = skillType;
     json.skillEffect = skillEffect;
-    json.item=item;
-    json.user=localStorage.getItem('shizukuSheetId');
+    json.item = item;
+    json.user = localStorage.getItem('shizukuSheetId');
+    json.label = $(`#label`).val();
 
 
     const url = new URL(window.location.href);
