@@ -68,7 +68,7 @@
                         <td class="bad">
                             <label class="control control--checkbox">
                                 <input type="checkbox" id="slump2" hidden/>
-                                　②魔力切れ　<div class="control__indicator"></div>
+                                　②スランプ　<div class="control__indicator"></div>
                             </label>
                         </td>
                     </tr>
@@ -82,7 +82,7 @@
                         <td class="bad">
                             <label class=   "control control--checkbox">
                                 <input type="checkbox" id="slump4" hidden/>
-                                　④ケガ　　　<div class="control__indicator"></div>
+                                　④怪我　　　<div class="control__indicator"></div>
                             </label>
                         </td>
                     </tr>
@@ -96,7 +96,7 @@
                         <td class="bad">
                             <label class="control control--checkbox">
                                 <input type="checkbox" id="slump6" hidden/>
-                                　⑥疲労　　　<div class="control__indicator"></div>
+                                　⑥疲れた　　<div class="control__indicator"></div>
                             </label>
                         </td>
                     </tr>
@@ -204,7 +204,7 @@
             <tr>
                 <td class="title" rowspan="3">個性スキル</td>
                 <td class="title">名称</td>
-                <td><input type="text" id="skill2Name"></td>
+                <td><select id="skill2Name" oninput="indivChange(this)"></td>
             </tr>
             <tr>
                 <td class="title">タイプ</td>
@@ -262,11 +262,21 @@
                 <td>①お酒　　<input type="number" min="0" max="3" style="width:30px;" id="item1"></td>
                 <td>④Ｐアイテム　　　　　<input type="number" min="0" max="3" style="width:30px;" id="item4"></td>
             </tr>
+            <tr>
                 <td>②小銭　　<input type="number" min="0" max="3" style="width:30px;" id="item2"></td>
                 <td>⑤残機のかけら　　　　<input type="number" min="0" max="3" style="width:30px;" id="item5"></td>
             </tr>
+            <tr>
                 <td>③お守り　<input type="number" min="0" max="3" style="width:30px;" id="item3"></td>
                 <td>⑥スペルカードの欠片　<input type="number" min="0" max="3" style="width:30px;" id="item6"></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td class="title">ラベル</td>
+                <td><input type="text" id="label"></td>
             </tr>
         </table>
     </div>
