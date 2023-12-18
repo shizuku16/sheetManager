@@ -92,7 +92,16 @@ input[type=checkbox] {
     white-space: nowrap;
 }
 
-.bad{
+.bad,.item{
     border:solid 0px;
     padding: 0px 0px;
+}
+
+div{
+    max-width: 100%;
+}
+
+#label{
+    width: 30em;
+    max-width: 100%;
 }
