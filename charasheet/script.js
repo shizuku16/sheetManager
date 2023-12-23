@@ -151,6 +151,15 @@ function makeJson(){
         fetch(`https://script.google.com/macros/s/AKfycbyPal2NDZQtd_0i_rgqhcIeufs3IDbzQ5HDD9tdLSdRh8n36PVkImRWXL5J1u2DhaioBQ/exec?data=${localStorage.getItem('shizukuSheetId')}|br|${sheetId}|br|${JSON.stringify(json)}`)
             .then(res=>res.json())
             .then(data=>{
+                if(sessionStorage.getItem("shizukuSheetList")){
+                    if(sheetId=="000000"||sheetId==null){
+                        let list=JSON.parse(sessionStorage.getItem("shizukuSheetList"));
+                        list.name.push(json.name);
+                        list.label.push(json.label);
+                        list.id.push(data);
+                        sessionStorage.setItem("shizukuSheetList",JSON.stringify(list));
+                    }
+                }
                 alert("保存されました。");
                 $(`button`).prop("disabled",false);
                 changeFlag=false;
@@ -178,6 +187,21 @@ function sheetDelete(){
     fetch(`https://script.google.com/macros/s/AKfycbz-TXINhwebMd-f49TnKWMbUkH7spSSNQrjY4ClPhEe6-Cf2RlCfHZyDSLogB7idsN37Q/exec?data=${userId}?${sheetId}`)
         .then(res=>res.json())
         .then(data=>{
+            //マイリストのキャッシュがあれば、キャッシュを変更
+            if(sessionStorage.getItem("shizukuSheetList")){
+                const url = new URL(window.location.href);
+                const sheetId = url.searchParams.get("id");
+                let list=JSON.parse(sessionStorage.getItem("shizukuSheetList"));
+                for(let i=0;i<list.name.length;i++){
+                    if(list.id[i]==sheetId){
+                        list.name.splice(i,1);
+                        list.label.splice(i,1);
+                        list.id.splice(i,1);
+                        sessionStorage.setItem("shizukuSheetList",JSON.stringify(list));
+                        break;
+                    }
+                }
+            }
             alert(`シートが削除されました。`);
             changeFlag=false;
             window.location.href=`../mylist/index.html`;
