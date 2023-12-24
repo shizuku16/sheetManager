@@ -63,6 +63,7 @@ async function load(){
     }
     document.title=`${json.name}`;
     $(`#label`).val(json.label);
+    $(`#memo`).val(json.memo);
     $(`body`).prop("hidden",false);
 }
 
@@ -143,38 +144,52 @@ function makeJson(){
     json.item = item;
     json.user = localStorage.getItem('shizukuSheetId');
     json.label = $(`#label`).val();
-
+    json.memo=$(`#memo`).val()
 
     const url = new URL(window.location.href);
     const sheetId = url.searchParams.get("id");
-    try{
-        fetch(`https://script.google.com/macros/s/AKfycbyPal2NDZQtd_0i_rgqhcIeufs3IDbzQ5HDD9tdLSdRh8n36PVkImRWXL5J1u2DhaioBQ/exec?data=${localStorage.getItem('shizukuSheetId')}|br|${sheetId}|br|${JSON.stringify(json)}`)
-            .then(res=>res.json())
-            .then(data=>{
-                if(sessionStorage.getItem("shizukuSheetList")){
-                    if(sheetId=="000000"||sheetId==null){
-                        let list=JSON.parse(sessionStorage.getItem("shizukuSheetList"));
-                        list.name.push(json.name);
-                        list.label.push(json.label);
-                        list.id.push(data);
+    const data={"user":localStorage.getItem('shizukuSheetId'),"sheet":sheetId,"json":JSON.stringify(json)}
+    fetch(`https://script.google.com/macros/s/AKfycbwRFepDCtKdhj5v6ud61yzHfmHVFw_z64Gj_6mfnL9aFEpT7xUIcyPYSRTy-FOLMOfi/exec`,{
+        "method":"post",
+        "Content-Type": "application/json",
+        "body":JSON.stringify(data),
+    })
+    .then(res=>res.json())
+    .then(newID=>{
+        if(sessionStorage.getItem("shizukuSheetList")){
+            let list=JSON.parse(sessionStorage.getItem("shizukuSheetList"));
+            if(sheetId=="000000"||sheetId==null){
+                list.name.push(json.name);
+                list.label.push(json.label);
+                list.id.push(newID);
+                sessionStorage.setItem("shizukuSheetList",JSON.stringify(list));
+            }
+            else{
+                for(let i=0;i<list.name.length;i++){
+                    if(list.id[i]==sheetId){
+                        list.name[i]=json.name;
+                        list.label[i]=json.label;
                         sessionStorage.setItem("shizukuSheetList",JSON.stringify(list));
+                        break;
                     }
                 }
-                alert("保存されました。");
-                $(`button`).prop("disabled",false);
-                changeFlag=false;
-                if(sheetId=="000000"||sheetId==null){
-                    url.searchParams.set("id",data);
-                    window.location.href=`./index.html?id=${data}#top`;
-                    return;
-                }
-            })
-    }catch(err){
+            }
+        }
+        alert("保存されました。");
+        $(`button`).prop("disabled",false);
+        changeFlag=false;
+        if(sheetId=="000000"||sheetId==null){
+            url.searchParams.set("id",newID);
+            window.location.href=`./index.html?id=${newID}#top`;
+            return;
+        }
+    })
+    .catch(()=>{
         alert("保存に失敗しました。クリップボードの情報をしずくへ送ってください。");
         $(`button`).prop("disabled",false);
         navigator.clipboard.writeText(JSON.stringify(json));
         return;
-    }
+    })
 }
 
 function sheetDelete(){
@@ -213,7 +228,7 @@ function outPut(){
     str+=`{"kind": "character","data": {`;
     str+=`"name": "${$(`#name`).val()}",`;
     str+=`"externalUrl": "${window.location.href}",`;
-    str+=`"commands": "2B6>=4\\n({霊力}/5+1)d6 【弾幕配置】",`;
+    str+=`"commands": "2B6>=4\\nFS({霊力}/5+1) 【弾幕配置】",`;
     str+=`"status": [{"label": "やる気","value": 1,"max": 3},{"label": "残り人数","value": 2,"max": 5},{"label": "スペルカード","value": 1,"max": 6},{"label": "グレイズ","value": 0,"max": 5},{"label": "霊力","value": 0,"max": 20}]`;
     str+=`}}`
     navigator.clipboard.writeText(str);
