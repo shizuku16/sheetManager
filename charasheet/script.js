@@ -1,6 +1,7 @@
 let changeFlag=false;
 
 async function load(){
+    $(`#loadBody`).prop("hidden",false);
     const url = new URL(window.location.href);
     const sheetId = url.searchParams.get("id");
     if(sheetId==null) url.searchParams.set("id","000000")
@@ -15,7 +16,8 @@ async function load(){
             $(`#newCreate`).prop("hidden",true);
             $(`#logInButton`).prop("hidden",false);
         }
-        $(`body`).prop("hidden",false);
+        $(`#main`).prop("hidden",false);
+        $(`#loadBody`).prop("hidden",true);
         document.title=`新規作成`;
         return
     };
@@ -64,7 +66,8 @@ async function load(){
     document.title=`${json.name}`;
     $(`#label`).val(json.label);
     $(`#memo`).val(json.memo);
-    $(`body`).prop("hidden",false);
+    $(`#main`).prop("hidden",false);
+    $(`#loadBody`).prop("hidden",true);
 }
 
 
