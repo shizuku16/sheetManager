@@ -105,3 +105,9 @@ div{
     width: 30em;
     max-width: 100%;
 }
+
+#memo{
+    width: 31em;
+    height: 8em;
+    max-width: 100%;
+}
