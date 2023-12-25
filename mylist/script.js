@@ -9,6 +9,8 @@ async function load(){
     }
     if(id!=userId){
         alert("不正なアクセスです");
+        localStorage.removeItem('shizukuSheetId');
+        sessionStorage.removeItem(`shizukuSheetList`);
         window.location.href=`../signin/index.html`;
     }
     let string=`<tr><th colspan="2">キャラシ一覧</td></tr><tr><th>名前</th><th>ラベル</th></tr>`;
@@ -59,6 +61,10 @@ async function load(){
                 })
                 sessionStorage.setItem(`shizukuSheetList`,JSON.stringify(json));
             })
+            .catch(err=>{
+                localStorage.removeItem(`shizukuSheetId`);
+                window.location.href="../signin/index.html";
+            })
     }
     table.insertAdjacentHTML("beforeend",string);
     document.getElementById("menu").hidden=false;
@@ -68,7 +74,7 @@ function logOut(){
     const logout=window.confirm("ログアウトしますか？");
     if(logout){
         localStorage.removeItem('shizukuSheetId');
-        sessionStorage.removeItem(`shizukuSheetList`)
+        sessionStorage.removeItem(`shizukuSheetList`);
         alert("ログアウトしました");
         window.location.href="../signin/index.html";
     }
